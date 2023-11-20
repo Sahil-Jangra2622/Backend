@@ -49,10 +49,13 @@ exports.getall = async (req,res) => {
 
             let result = await Promise.all(
                 users.map(async (idx)=>{
-                    const name = idx.Name;
+                    const name = {
+                        Name:idx.Name,
+                        Available:idx.Available,
+                    };
                     return name;
                 }),
-            )
+                )
             return res.status(200).json({
             success: true,
             result,
